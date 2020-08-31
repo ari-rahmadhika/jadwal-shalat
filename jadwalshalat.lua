@@ -1,8 +1,11 @@
 -- Jadwal shalat
 -- by: Ari Rahmadhika
 
--- SILAHKAN INSTALL PACKAGE LUA DULU SEBELUM MENJALANKAN SCRIPT
--- /pkg install lua
+-- SILAHKAN INSTALL DULU KERPELUANNYA SEBELUM MENJALANKAN SCRIPT
+-- pkg install lua
+-- pkg install luarocks
+-- luarocks install luasec
+-- luarocks install dkjson
 
 local https = require("ssl.https")
 local json = require("dkjson")
