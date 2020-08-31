@@ -1,4 +1,0 @@
-dependencies = {
-    "luasec",
-    "dkjson"
-}
