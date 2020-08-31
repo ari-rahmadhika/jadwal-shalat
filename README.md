@@ -10,6 +10,6 @@ $ luarocks install luasec
 $ luarocks install dkjson
 $ git clone https://github.com/ari-rahmadhika/jadwal-shalat
 $ cd jadwal-shalat
-$ lua jadwal-shalat.lua
+$ lua jadwalshalat.lua
 </pre>
 Semoga bermanfaat ya
