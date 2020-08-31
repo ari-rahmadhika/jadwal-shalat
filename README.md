@@ -1,5 +1,5 @@
 # jadwal-shalat
-Lihat jadwal shalat di termux
+Lihat jadwal shalat menggunakan termux. 
 # Cara Install
 Buka termux, lalu ketikkan command berikut
 <pre>
