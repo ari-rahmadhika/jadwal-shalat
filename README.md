@@ -1,7 +1,6 @@
 # jadwal-shalat
 Lihat jadwal shalat menggunakan termux. 
 # Cara Install
-Buka termux, lalu ketikkan command berikut
 <pre>
 $ pkg update && pkg upgrade
 $ pkg install lua
