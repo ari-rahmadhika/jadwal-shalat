@@ -2,8 +2,7 @@
 -- by: Ari Rahmadhika
 
 -- SILAHKAN INSTALL DULU KERPELUANNYA SEBELUM MENJALANKAN SCRIPT
--- pkg install lua
--- pkg install luarocks
+-- pkg install lua luarocks clang
 -- luarocks install luasec
 -- luarocks install dkjson
 
