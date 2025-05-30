@@ -1,3 +1,21 @@
+--[[local https = require('ssl.https')
+local url = 'https://arrosyad.or.id'
+local resp = {}
+local body, code, headers = https.request{ url = url,  sink = ltn12.sink.table(resp) }   
+if code~=200 then 
+    print("Error: ".. (code or '') ) 
+    return 
+end
+print("Status:", body and "OK" or "FAILED")
+print("HTTP code:", code)
+print("Response headers:")
+if type(headers) == "table" then
+  for k, v in pairs(headers) do
+    print(k, ":", v)        
+  end
+end
+print( table.concat(resp) )]]
+
 -- Jadwal shalat
 -- by: Ari Rahmadhika
 
@@ -20,15 +38,15 @@ function sendRequest(url)
 end
 
 function getKodeKota(nama_kota)
-    local url = "https://api.banghasan.com/sholat/format/json/kota/nama/" .. nama_kota
+    local url = "https://api.myquran.com/v2/sholat/kota/cari/" .. nama_kota
     
     return sendRequest(url)
 end
 
 function getJadwalShalat(nama_kota)
     local kode = getKodeKota(nama_kota)
-    if kode.kota[1] ~= nil then
-        local url = "https://api.banghasan.com/sholat/format/json/jadwal/kota/" .. kode.kota[1].id .. "/tanggal/" .. os.date("%Y-%m-%d")
+    if kode.status ~= false then
+        local url = "https://api.myquran.com/v2/sholat/jadwal/" .. kode.data[1].id .. "/" .. os.date("%Y-%m-%d")
         return sendRequest(url)
     else
         return false
@@ -42,13 +60,13 @@ print("Sedang proses..")
 
 jadwal = getJadwalShalat(kota)
 
-if jadwal and jadwal.status == "ok" then
+if jadwal and jadwal.status == true then
     print("\nJadwal shalat untuk wilayah " .. string.gsub(" " .. kota, "%W%l", string.upper):sub(2) .. "\n\n" ..
-          "Maghrib:   " .. jadwal.jadwal.data.maghrib .. "\n" ..
-          "'Isya:   " .. jadwal.jadwal.data.isya .. "\n" ..
-          "Shubuh:   " .. jadwal.jadwal.data.subuh .. "\n" ..
-          "Dzhuhur:   " .. jadwal.jadwal.data.dzuhur .. "\n" ..
-          "'Ashar:   " .. jadwal.jadwal.data.ashar .. "\n")
+          "Maghrib:   " .. jadwal.data.jadwal.maghrib .. "\n" ..
+          "'Isya:   " .. jadwal.data.jadwal.isya .. "\n" ..
+          "Shubuh:   " .. jadwal.data.jadwal.subuh .. "\n" ..
+          "Dzhuhur:   " .. jadwal.data.jadwal.dzuhur .. "\n" ..
+          "'Ashar:   " .. jadwal.data.jadwal.ashar .. "\n")
 else
     print("Jadwal tidak ditemukan. Masukkan kembali nama kota dengan benar!")
 end
